@@ -12,7 +12,7 @@ It is only the application of Transformer in the image domain with slight modifi
 
 ## Architecture
 
-![Alt Text](https://miro.medium.com/max/700/1*_c8SqxPMY_dsApyvDJ8HtA.gif)
+![Alt Text](1_l37va2Mu8Snx6LLb13430A.png)
 
 
 ## How to use it
