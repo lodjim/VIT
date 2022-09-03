@@ -22,7 +22,7 @@ def extract_features(path_to_data, path_to_save):
     for directory in sub_directory:
         for path in track(glob.glob(f'{directory}/*'), directory):
             image = cv2.imread(path)
-            img = cv2.resize(image, (100, 100), interpolation=cv2.INTER_CUBIC)
+            img = cv2.resize(image, (384, 384), interpolation=cv2.INTER_CUBIC)
             data_acc.append(img)
             labels_acc.append(label)
         # end for
@@ -42,7 +42,7 @@ def load_data(path_to_dataset, batch_size):
     data = dataframe['data']
     x_numpy = np.array(data,dtype=np.float32)
     x_tensor = th.from_numpy(x_numpy)
-    x_tensor = th.reshape(x_tensor, (len(data), 3, 100, 100))
+    x_tensor = th.reshape(x_tensor, (len(data), 3, 384, 384))
     y_numpy = np.array(dataframe['labels'])
     y_tensor = th.tensor(y_numpy, dtype=th.long)
 
@@ -83,7 +83,7 @@ def predict(path_to_model,path_to_image):
         path_to_model))
     model.eval()
     image = cv2.imread(path_to_image)
-    img = cv2.resize(image, (100, 100), interpolation=cv2.INTER_CUBIC)
+    img = cv2.resize(image, (384, 384), interpolation=cv2.INTER_CUBIC)
     img = (np.array(Image.fromarray(img))/128)-1
     img = th.from_numpy(img).permute(2, 0, 1).unsqueeze(0).to(th.float32)
     print(model(img))
