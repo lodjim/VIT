@@ -1,4 +1,3 @@
-from email.policy import default
 import click
 from rich.progress import track
 from librairies.utils import extract_features, train_model,predict
